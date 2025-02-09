@@ -1,7 +1,7 @@
 {
   "Zurich": {
     "success": true,
-    "timestamp": "2025-02-09T01:17:15.224646",
+    "timestamp": "2025-02-09T03:03:40.100955",
     "metrics": {
       "sales": {
         "total": 55402.25,
@@ -65,7 +65,7 @@
     },
     "analysis": {
       "performance_metrics": {
-        "timestamp": "2025-02-09T01:17:15.223646",
+        "timestamp": "2025-02-09T03:03:40.100955",
         "metrics": {
           "sales": {
             "total": 55402.25,
@@ -98,7 +98,7 @@
         "success": true,
         "report": {
           "title": "Reporte de Rendimiento - Zurich",
-          "timestamp": "2025-02-09T01:17:15.224646",
+          "timestamp": "2025-02-09T03:03:40.100955",
           "location": "Zurich",
           "kpis": [
             {
@@ -107,7 +107,7 @@
               "trend": 0.0,
               "target": 50000.0,
               "unit": "CHF",
-              "timestamp": "2025-02-09 01:17:15.223646"
+              "timestamp": "2025-02-09 03:03:40.100955"
             },
             {
               "name": "average_ticket",
@@ -115,7 +115,7 @@
               "trend": 0.0,
               "target": 100.0,
               "unit": "CHF",
-              "timestamp": "2025-02-09 01:17:15.223646"
+              "timestamp": "2025-02-09 03:03:40.100955"
             },
             {
               "name": "staff_efficiency",
@@ -123,7 +123,7 @@
               "trend": 0.0,
               "target": 90.0,
               "unit": "%",
-              "timestamp": "2025-02-09 01:17:15.223646"
+              "timestamp": "2025-02-09 03:03:40.100955"
             },
             {
               "name": "staff_satisfaction",
@@ -131,7 +131,7 @@
               "trend": 0.0,
               "target": 4.5,
               "unit": "/5",
-              "timestamp": "2025-02-09 01:17:15.223646"
+              "timestamp": "2025-02-09 03:03:40.100955"
             }
           ],
           "alerts": [],
@@ -150,7 +150,7 @@
   },
   "Geneva": {
     "success": true,
-    "timestamp": "2025-02-09T01:17:15.227646",
+    "timestamp": "2025-02-09T03:03:40.102955",
     "metrics": {
       "sales": {
         "total": 43001.75,
@@ -214,7 +214,7 @@
     },
     "analysis": {
       "performance_metrics": {
-        "timestamp": "2025-02-09T01:17:15.227646",
+        "timestamp": "2025-02-09T03:03:40.102955",
         "metrics": {
           "sales": {
             "total": 43001.75,
@@ -245,7 +245,7 @@
         "success": true,
         "report": {
           "title": "Reporte de Rendimiento - Geneva",
-          "timestamp": "2025-02-09T01:17:15.227646",
+          "timestamp": "2025-02-09T03:03:40.102955",
           "location": "Geneva",
           "kpis": [
             {
@@ -254,7 +254,7 @@
               "trend": 0.0,
               "target": 50000.0,
               "unit": "CHF",
-              "timestamp": "2025-02-09 01:17:15.227646"
+              "timestamp": "2025-02-09 03:03:40.102955"
             },
             {
               "name": "average_ticket",
@@ -262,7 +262,7 @@
               "trend": 0.0,
               "target": 100.0,
               "unit": "CHF",
-              "timestamp": "2025-02-09 01:17:15.227646"
+              "timestamp": "2025-02-09 03:03:40.102955"
             },
             {
               "name": "staff_efficiency",
@@ -270,7 +270,7 @@
               "trend": 0.0,
               "target": 90.0,
               "unit": "%",
-              "timestamp": "2025-02-09 01:17:15.227646"
+              "timestamp": "2025-02-09 03:03:40.102955"
             },
             {
               "name": "staff_satisfaction",
@@ -278,7 +278,7 @@
               "trend": 0.0,
               "target": 4.5,
               "unit": "/5",
-              "timestamp": "2025-02-09 01:17:15.227646"
+              "timestamp": "2025-02-09 03:03:40.102955"
             }
           ],
           "alerts": [],
@@ -299,7 +299,7 @@
   },
   "Basel": {
     "success": true,
-    "timestamp": "2025-02-09T01:17:15.229646",
+    "timestamp": "2025-02-09T03:03:40.105955",
     "metrics": {
       "sales": {
         "total": 38002.0,
@@ -363,7 +363,7 @@
     },
     "analysis": {
       "performance_metrics": {
-        "timestamp": "2025-02-09T01:17:15.228666",
+        "timestamp": "2025-02-09T03:03:40.104960",
         "metrics": {
           "sales": {
             "total": 38002.0,
@@ -394,7 +394,7 @@
         "success": true,
         "report": {
           "title": "Reporte de Rendimiento - Basel",
-          "timestamp": "2025-02-09T01:17:15.228666",
+          "timestamp": "2025-02-09T03:03:40.105955",
           "location": "Basel",
           "kpis": [
             {
@@ -403,7 +403,7 @@
               "trend": 0.0,
               "target": 50000.0,
               "unit": "CHF",
-              "timestamp": "2025-02-09 01:17:15.228666"
+              "timestamp": "2025-02-09 03:03:40.104960"
             },
             {
               "name": "average_ticket",
@@ -411,7 +411,7 @@
               "trend": 0.0,
               "target": 100.0,
               "unit": "CHF",
-              "timestamp": "2025-02-09 01:17:15.228666"
+              "timestamp": "2025-02-09 03:03:40.104960"
             },
             {
               "name": "staff_efficiency",
@@ -419,7 +419,7 @@
               "trend": 0.0,
               "target": 90.0,
               "unit": "%",
-              "timestamp": "2025-02-09 01:17:15.228666"
+              "timestamp": "2025-02-09 03:03:40.104960"
             },
             {
               "name": "staff_satisfaction",
@@ -427,7 +427,7 @@
               "trend": 0.0,
               "target": 4.5,
               "unit": "/5",
-              "timestamp": "2025-02-09 01:17:15.228666"
+              "timestamp": "2025-02-09 03:03:40.104960"
             }
           ],
           "alerts": [],
