@@ -1,0 +1,14 @@
+{
+  "Zurich": {
+    "success": false,
+    "error": "'dict' object has no attribute 'staff_count'"
+  },
+  "Geneva": {
+    "success": false,
+    "error": "'dict' object has no attribute 'staff_count'"
+  },
+  "Basel": {
+    "success": false,
+    "error": "'dict' object has no attribute 'staff_count'"
+  }
+}

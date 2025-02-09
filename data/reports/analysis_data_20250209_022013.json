@@ -1,0 +1,304 @@
+{
+  "Zurich": {
+    "success": true,
+    "timestamp": "2025-02-09T02:20:13.366878",
+    "metrics": {
+      "sales": {
+        "total": 55402.25,
+        "transactions": 569,
+        "peak_hours": [
+          "12:30",
+          "19:30",
+          "13:15"
+        ]
+      },
+      "inventory": {
+        "meat": {
+          "quantity": 5.0,
+          "minimum_stock": 2.0,
+          "cost_per_unit": 25.5,
+          "last_restock_date": "2024-01-01",
+          "expiry_date": "2024-01-07",
+          "supplier": "Swiss Meats"
+        },
+        "vegetables": {
+          "quantity": 3.0,
+          "minimum_stock": 1.5,
+          "cost_per_unit": 8.75,
+          "last_restock_date": "2024-01-01",
+          "expiry_date": "2024-01-04",
+          "supplier": "Fresh Farms"
+        },
+        "dairy": {
+          "quantity": 4.0,
+          "minimum_stock": 2.0,
+          "cost_per_unit": 12.25,
+          "last_restock_date": "2024-01-01",
+          "expiry_date": "2024-01-10",
+          "supplier": "Alpine Dairy"
+        }
+      },
+      "staff": {
+        "total_count": "30",
+        "efficiency": 0.85,
+        "satisfaction": 4.5,
+        "experience": 2.3333333333333335,
+        "shifts": [
+          {
+            "shift": "morning",
+            "staff_count": 12,
+            "efficiency_score": 0.85
+          },
+          {
+            "shift": "evening",
+            "staff_count": 10,
+            "efficiency_score": 0.88
+          },
+          {
+            "shift": "night",
+            "staff_count": 8,
+            "efficiency_score": 0.82
+          }
+        ],
+        "overtime_total": "15"
+      }
+    },
+    "analysis": {
+      "performance_metrics": {
+        "timestamp": "2025-02-09T02:20:13.366878",
+        "metrics": {
+          "sales": {
+            "total": 55402.25,
+            "daily_average": 1846.7416666666666,
+            "transactions": 569,
+            "average_ticket": 97.36775043936731
+          },
+          "staff": {
+            "count": 30,
+            "efficiency": 0.85,
+            "satisfaction": 4.5,
+            "overtime_hours": 15.0
+          },
+          "productivity": {
+            "sales_per_staff": 1846.7416666666666,
+            "transactions_per_staff": 18.966666666666665
+          },
+          "inventory": {
+            "total_items": 3,
+            "items_below_minimum": 0,
+            "health_score": 1.0
+          }
+        },
+        "insights": [
+          "Alto volumen de ventas - revisar capacidad operativa"
+        ],
+        "recommendations": []
+      },
+      "report": {
+        "success": false,
+        "error": "'ReportingTools' object has no attribute 'create_report'"
+      },
+      "location": "Zurich"
+    }
+  },
+  "Geneva": {
+    "success": true,
+    "timestamp": "2025-02-09T02:20:13.368855",
+    "metrics": {
+      "sales": {
+        "total": 43001.75,
+        "transactions": 438,
+        "peak_hours": [
+          "13:15",
+          "19:15",
+          "13:30"
+        ]
+      },
+      "inventory": {
+        "meat": {
+          "quantity": 4.0,
+          "minimum_stock": 2.0,
+          "cost_per_unit": 24.75,
+          "last_restock_date": "2024-01-01",
+          "expiry_date": "2024-01-07",
+          "supplier": "Swiss Meats"
+        },
+        "vegetables": {
+          "quantity": 2.0,
+          "minimum_stock": 1.5,
+          "cost_per_unit": 8.5,
+          "last_restock_date": "2024-01-01",
+          "expiry_date": "2024-01-04",
+          "supplier": "Local Farms"
+        },
+        "dairy": {
+          "quantity": 3.0,
+          "minimum_stock": 2.0,
+          "cost_per_unit": 11.75,
+          "last_restock_date": "2024-01-01",
+          "expiry_date": "2024-01-10",
+          "supplier": "Geneva Dairy"
+        }
+      },
+      "staff": {
+        "total_count": "24",
+        "efficiency": 0.82,
+        "satisfaction": 4.3,
+        "experience": 1.8333333333333333,
+        "shifts": [
+          {
+            "shift": "morning",
+            "staff_count": 10,
+            "efficiency_score": 0.82
+          },
+          {
+            "shift": "evening",
+            "staff_count": 8,
+            "efficiency_score": 0.84
+          },
+          {
+            "shift": "night",
+            "staff_count": 6,
+            "efficiency_score": 0.8
+          }
+        ],
+        "overtime_total": "8"
+      }
+    },
+    "analysis": {
+      "performance_metrics": {
+        "timestamp": "2025-02-09T02:20:13.368855",
+        "metrics": {
+          "sales": {
+            "total": 43001.75,
+            "daily_average": 1433.3916666666667,
+            "transactions": 438,
+            "average_ticket": 98.17751141552512
+          },
+          "staff": {
+            "count": 24,
+            "efficiency": 0.82,
+            "satisfaction": 4.3,
+            "overtime_hours": 8.0
+          },
+          "productivity": {
+            "sales_per_staff": 1791.7395833333333,
+            "transactions_per_staff": 18.25
+          },
+          "inventory": {
+            "total_items": 3,
+            "items_below_minimum": 0,
+            "health_score": 1.0
+          }
+        },
+        "insights": [],
+        "recommendations": []
+      },
+      "report": {
+        "success": false,
+        "error": "'ReportingTools' object has no attribute 'create_report'"
+      },
+      "location": "Geneva"
+    }
+  },
+  "Basel": {
+    "success": true,
+    "timestamp": "2025-02-09T02:20:13.369857",
+    "metrics": {
+      "sales": {
+        "total": 38002.0,
+        "transactions": 380,
+        "peak_hours": [
+          "19:45",
+          "19:30",
+          "13:45"
+        ]
+      },
+      "inventory": {
+        "meat": {
+          "quantity": 6.0,
+          "minimum_stock": 2.0,
+          "cost_per_unit": 23.5,
+          "last_restock_date": "2024-01-01",
+          "expiry_date": "2024-01-07",
+          "supplier": "Basel Meats"
+        },
+        "vegetables": {
+          "quantity": 4.0,
+          "minimum_stock": 1.5,
+          "cost_per_unit": 7.75,
+          "last_restock_date": "2024-01-01",
+          "expiry_date": "2024-01-04",
+          "supplier": "Rhine Valley Farms"
+        },
+        "dairy": {
+          "quantity": 5.0,
+          "minimum_stock": 2.0,
+          "cost_per_unit": 10.25,
+          "last_restock_date": "2024-01-01",
+          "expiry_date": "2024-01-10",
+          "supplier": "Basel Dairy"
+        }
+      },
+      "staff": {
+        "total_count": "20",
+        "efficiency": 0.8533333333333334,
+        "satisfaction": 4.666666666666667,
+        "experience": 3.1666666666666665,
+        "shifts": [
+          {
+            "shift": "morning",
+            "staff_count": 8,
+            "efficiency_score": 0.86
+          },
+          {
+            "shift": "evening",
+            "staff_count": 7,
+            "efficiency_score": 0.87
+          },
+          {
+            "shift": "night",
+            "staff_count": 5,
+            "efficiency_score": 0.83
+          }
+        ],
+        "overtime_total": "13"
+      }
+    },
+    "analysis": {
+      "performance_metrics": {
+        "timestamp": "2025-02-09T02:20:13.369857",
+        "metrics": {
+          "sales": {
+            "total": 38002.0,
+            "daily_average": 1266.7333333333333,
+            "transactions": 380,
+            "average_ticket": 100.00526315789473
+          },
+          "staff": {
+            "count": 20,
+            "efficiency": 0.8533333333333334,
+            "satisfaction": 4.666666666666667,
+            "overtime_hours": 13.0
+          },
+          "productivity": {
+            "sales_per_staff": 1900.1,
+            "transactions_per_staff": 19.0
+          },
+          "inventory": {
+            "total_items": 3,
+            "items_below_minimum": 0,
+            "health_score": 1.0
+          }
+        },
+        "insights": [],
+        "recommendations": []
+      },
+      "report": {
+        "success": false,
+        "error": "'ReportingTools' object has no attribute 'create_report'"
+      },
+      "location": "Basel"
+    }
+  }
+}

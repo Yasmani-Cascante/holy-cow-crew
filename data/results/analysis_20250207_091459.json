@@ -1,0 +1,14 @@
+{
+  "Zurich": {
+    "success": false,
+    "error": "'list' object has no attribute 'get'"
+  },
+  "Geneva": {
+    "success": false,
+    "error": "'list' object has no attribute 'get'"
+  },
+  "Basel": {
+    "success": false,
+    "error": "'list' object has no attribute 'get'"
+  }
+}

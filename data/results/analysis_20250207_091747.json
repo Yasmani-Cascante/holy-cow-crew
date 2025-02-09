@@ -1,0 +1,24 @@
+{
+  "Zurich": {
+    "success": true,
+    "timestamp": "2025-02-07T09:17:47.475618",
+    "metrics": {
+      "efficiency": 29.268292682926827,
+      "savings": 0.0,
+      "performance_score": 0
+    }
+  },
+  "Geneva": {
+    "success": false,
+    "error": "'MarketingRecommendation' object has no attribute 'get'"
+  },
+  "Basel": {
+    "success": true,
+    "timestamp": "2025-02-07T09:17:47.480617",
+    "metrics": {
+      "efficiency": 30.76923076923077,
+      "savings": 0.0,
+      "performance_score": 0
+    }
+  }
+}

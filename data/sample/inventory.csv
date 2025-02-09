@@ -1,0 +1,10 @@
+location,item,quantity,minimum_stock,cost_per_unit,last_restock_date,expiry_date,supplier
+Zurich,meat,5.0,2.0,25.50,2024-01-01,2024-01-07,Swiss Meats
+Zurich,vegetables,3.0,1.5,8.75,2024-01-01,2024-01-04,Fresh Farms
+Zurich,dairy,4.0,2.0,12.25,2024-01-01,2024-01-10,Alpine Dairy
+Geneva,meat,4.0,2.0,24.75,2024-01-01,2024-01-07,Swiss Meats
+Geneva,vegetables,2.0,1.5,8.50,2024-01-01,2024-01-04,Local Farms
+Geneva,dairy,3.0,2.0,11.75,2024-01-01,2024-01-10,Geneva Dairy
+Basel,meat,6.0,2.0,23.50,2024-01-01,2024-01-07,Basel Meats
+Basel,vegetables,4.0,1.5,7.75,2024-01-01,2024-01-04,Rhine Valley Farms
+Basel,dairy,5.0,2.0,10.25,2024-01-01,2024-01-10,Basel Dairy

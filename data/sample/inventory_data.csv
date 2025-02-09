@@ -1,0 +1,13 @@
+date,location,item_category,units_in_stock,units_sold,waste_units,stock_value,reorder_point
+2024-11-01,Zurich,meat,450,120,2,9000.00,200
+2024-11-01,Zurich,produce,300,85,5,1500.00,150
+2024-11-01,Zurich,dairy,250,65,3,1250.00,100
+2024-11-01,Zurich,beverages,600,150,0,1800.00,250
+2024-11-15,Zurich,meat,380,135,3,7600.00,200
+2024-11-15,Zurich,produce,280,90,6,1400.00,150
+2024-11-15,Zurich,dairy,220,70,4,1100.00,100
+2024-11-15,Zurich,beverages,550,160,0,1650.00,250
+2024-11-30,Zurich,meat,420,140,2,8400.00,200
+2024-11-30,Zurich,produce,290,95,4,1450.00,150
+2024-11-30,Zurich,dairy,240,75,3,1200.00,100
+2024-11-30,Zurich,beverages,580,170,0,1740.00,250

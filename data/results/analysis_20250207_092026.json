@@ -1,0 +1,35 @@
+{
+  "Zurich": {
+    "success": true,
+    "timestamp": "2025-02-07T09:20:26.025782",
+    "metrics": {
+      "efficiency": 29.268292682926827,
+      "savings": 0.0,
+      "performance_score": 0,
+      "turnover_per_staff": 1437.375,
+      "inventory_value": 12.0
+    }
+  },
+  "Geneva": {
+    "success": true,
+    "timestamp": "2025-02-07T09:20:26.027782",
+    "metrics": {
+      "efficiency": 37.03703703703704,
+      "savings": 0.0,
+      "performance_score": 0,
+      "turnover_per_staff": 1344.5549999999998,
+      "inventory_value": 9.0
+    }
+  },
+  "Basel": {
+    "success": true,
+    "timestamp": "2025-02-07T09:20:26.028783",
+    "metrics": {
+      "efficiency": 30.76923076923077,
+      "savings": 0.0,
+      "performance_score": 0,
+      "turnover_per_staff": 1528.225,
+      "inventory_value": 15.0
+    }
+  }
+}

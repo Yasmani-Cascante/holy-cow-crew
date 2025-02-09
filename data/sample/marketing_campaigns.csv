@@ -1,0 +1,5 @@
+campaign_id,location,start_date,end_date,campaign_type,target_audience,budget,impressions,conversions,revenue_impact
+FALL2024_01,Zurich,2024-11-01,2024-11-07,Social Media,young_professionals,2500.00,25000,750,3750.00
+FALL2024_02,Zurich,2024-11-08,2024-11-14,Local Radio,families,3000.00,40000,600,4200.00
+FALL2024_03,Zurich,2024-11-15,2024-11-21,Event Sponsorship,students,4000.00,15000,450,5400.00
+FALL2024_04,Zurich,2024-11-22,2024-11-30,Digital Display,business_professionals,3500.00,35000,525,4725.00

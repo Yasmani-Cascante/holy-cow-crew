@@ -1,0 +1,10 @@
+location,staff_count,shift,efficiency_score,hours_worked,overtime_hours,customer_satisfaction,training_completed,years_experience,department
+Zurich,12,morning,0.85,160,5,4.5,true,2.5,kitchen
+Zurich,10,evening,0.88,150,8,4.6,true,3.0,service
+Zurich,8,night,0.82,140,2,4.4,true,1.5,kitchen
+Geneva,10,morning,0.82,155,3,4.3,true,2.0,kitchen
+Geneva,8,evening,0.84,145,4,4.4,true,2.5,service
+Geneva,6,night,0.80,135,1,4.2,true,1.0,kitchen
+Basel,8,morning,0.86,158,6,4.7,true,4.0,kitchen
+Basel,7,evening,0.87,148,5,4.8,true,3.5,service
+Basel,5,night,0.83,138,2,4.5,true,2.0,kitchen
