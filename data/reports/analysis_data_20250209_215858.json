@@ -1,0 +1,17 @@
+{
+  "Zurich": {
+    "success": false,
+    "error": "HolyCowIntegrator.analyze_location() takes 2 positional arguments but 3 were given",
+    "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\yasma\\Desktop\\holy-cow-crew\\src\\run_test_crew.py\", line 196, in run_restaurant_optimization\n    analysis = integrator.analyze_location(location, metrics)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: HolyCowIntegrator.analyze_location() takes 2 positional arguments but 3 were given\n"
+  },
+  "Geneva": {
+    "success": false,
+    "error": "HolyCowIntegrator.analyze_location() takes 2 positional arguments but 3 were given",
+    "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\yasma\\Desktop\\holy-cow-crew\\src\\run_test_crew.py\", line 196, in run_restaurant_optimization\n    analysis = integrator.analyze_location(location, metrics)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: HolyCowIntegrator.analyze_location() takes 2 positional arguments but 3 were given\n"
+  },
+  "Basel": {
+    "success": false,
+    "error": "HolyCowIntegrator.analyze_location() takes 2 positional arguments but 3 were given",
+    "traceback": "Traceback (most recent call last):\n  File \"C:\\Users\\yasma\\Desktop\\holy-cow-crew\\src\\run_test_crew.py\", line 196, in run_restaurant_optimization\n    analysis = integrator.analyze_location(location, metrics)\n               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: HolyCowIntegrator.analyze_location() takes 2 positional arguments but 3 were given\n"
+  }
+}

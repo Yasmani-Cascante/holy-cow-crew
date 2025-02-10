@@ -1,0 +1,159 @@
+from src.models.inventory_models import (
+    InventoryItem,
+    ItemCategory,
+    StorageCondition
+)
+
+HOLY_COW_SPECIAL_ITEMS = {
+    # Salsas Especiales
+    "SAUCE002": InventoryItem(
+        id="SAUCE002",
+        name="BBQ Sauce",
+        category=ItemCategory.PERISHABLE,
+        storage=StorageCondition.REFRIGERATED,
+        unit="liter",
+        min_level=4,
+        max_level=15,
+        reorder_point=6,
+        lead_time_days=3,
+        shelf_life_days=14,
+        cost_per_unit=7.50,
+        supplier_id="HOLY_COW_CENTRAL"
+    ),
+    "SAUCE003": InventoryItem(
+        id="SAUCE003",
+        name="Guacamole Fresh",
+        category=ItemCategory.PERISHABLE,
+        storage=StorageCondition.REFRIGERATED,
+        unit="kg",
+        min_level=3,
+        max_level=12,
+        reorder_point=5,
+        lead_time_days=2,
+        shelf_life_days=4,
+        cost_per_unit=12.00,
+        supplier_id="HOLY_COW_CENTRAL"
+    ),
+    
+    # Carnes Especiales
+    "BEEF002": InventoryItem(
+        id="BEEF002",
+        name="Plant-Based Patty",
+        category=ItemCategory.FROZEN,
+        storage=StorageCondition.FROZEN,
+        unit="piece",
+        min_level=50,
+        max_level=200,
+        reorder_point=75,
+        lead_time_days=4,
+        shelf_life_days=90,
+        cost_per_unit=5.20,
+        supplier_id="VEGAN_SUPPLIES"
+    ),
+    "CHICK001": InventoryItem(
+        id="CHICK001",
+        name="Swiss Chicken Breast",
+        category=ItemCategory.PERISHABLE,
+        storage=StorageCondition.REFRIGERATED,
+        unit="piece",
+        min_level=50,
+        max_level=200,
+        reorder_point=75,
+        lead_time_days=2,
+        shelf_life_days=4,
+        cost_per_unit=3.80,
+        supplier_id="SWISS_POULTRY"
+    ),
+    
+    # Toppings Especiales
+    "TOP001": InventoryItem(
+        id="TOP001",
+        name="Caramelized Onions",
+        category=ItemCategory.PERISHABLE,
+        storage=StorageCondition.REFRIGERATED,
+        unit="kg",
+        min_level=3,
+        max_level=12,
+        reorder_point=5,
+        lead_time_days=2,
+        shelf_life_days=5,
+        cost_per_unit=6.50,
+        supplier_id="LOCAL_PRODUCE"
+    ),
+    "TOP002": InventoryItem(
+        id="TOP002",
+        name="Jalapeños",
+        category=ItemCategory.PERISHABLE,
+        storage=StorageCondition.REFRIGERATED,
+        unit="kg",
+        min_level=2,
+        max_level=8,
+        reorder_point=3,
+        lead_time_days=3,
+        shelf_life_days=14,
+        cost_per_unit=8.00,
+        supplier_id="SPECIALTY_PRODUCE"
+    ),
+    
+    # Panes Especiales
+    "BUN002": InventoryItem(
+        id="BUN002",
+        name="Gluten-Free Bun",
+        category=ItemCategory.PERISHABLE,
+        storage=StorageCondition.FROZEN,
+        unit="piece",
+        min_level=30,
+        max_level=120,
+        reorder_point=45,
+        lead_time_days=4,
+        shelf_life_days=90,
+        cost_per_unit=1.80,
+        supplier_id="GLUTEN_FREE_BAKERY"
+    ),
+    
+    # Complementos Premium
+    "COMP001": InventoryItem(
+        id="COMP001",
+        name="Truffle Mayo",
+        category=ItemCategory.PERISHABLE,
+        storage=StorageCondition.REFRIGERATED,
+        unit="liter",
+        min_level=2,
+        max_level=8,
+        reorder_point=3,
+        lead_time_days=4,
+        shelf_life_days=14,
+        cost_per_unit=24.00,
+        supplier_id="SPECIALTY_FOODS"
+    ),
+    "COMP002": InventoryItem(
+        id="COMP002",
+        name="Crispy Onion Strings",
+        category=ItemCategory.DRY_GOODS,
+        storage=StorageCondition.ROOM_TEMP,
+        unit="kg",
+        min_level=3,
+        max_level=12,
+        reorder_point=5,
+        lead_time_days=4,
+        shelf_life_days=30,
+        cost_per_unit=12.00,
+        supplier_id="SPECIALTY_FOODS"
+    ),
+    
+    # Postres
+    "DESS001": InventoryItem(
+        id="DESS001",
+        name="Swiss Chocolate Cookies",
+        category=ItemCategory.DRY_GOODS,
+        storage=StorageCondition.ROOM_TEMP,
+        unit="piece",
+        min_level=100,
+        max_level=400,
+        reorder_point=150,
+        lead_time_days=3,
+        shelf_life_days=21,
+        cost_per_unit=1.20,
+        supplier_id="LOCAL_BAKERY"
+    )
+}

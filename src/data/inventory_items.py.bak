@@ -1,0 +1,179 @@
+from src.models.inventory_models import (
+    InventoryItem,
+    ItemCategory,
+    StorageCondition
+)
+
+HOLY_COW_INVENTORY = {
+    # Panes
+    "BUN001": InventoryItem(
+        id="BUN001",
+        name="Classic Burger Buns",
+        category=ItemCategory.PERISHABLE,
+        storage=StorageCondition.ROOM_TEMP,
+        unit="piece",
+        min_level=200,
+        max_level=800,
+        reorder_point=300,
+        lead_time_days=2,
+        shelf_life_days=5,
+        cost_per_unit=0.75,
+        supplier_id="LOCAL_BAKERY"
+    ),
+    
+    # Carnes
+    "BEEF001": InventoryItem(
+        id="BEEF001",
+        name="Swiss Beef Patty 180g",
+        category=ItemCategory.PERISHABLE,
+        storage=StorageCondition.REFRIGERATED,
+        unit="piece",
+        min_level=150,
+        max_level=600,
+        reorder_point=250,
+        lead_time_days=2,
+        shelf_life_days=4,
+        cost_per_unit=4.50,
+        supplier_id="SWISS_MEAT"
+    ),
+    
+    # Quesos
+    "CHEESE001": InventoryItem(
+        id="CHEESE001",
+        name="Swiss Raclette Cheese",
+        category=ItemCategory.PERISHABLE,
+        storage=StorageCondition.REFRIGERATED,
+        unit="kg",
+        min_level=5,
+        max_level=20,
+        reorder_point=8,
+        lead_time_days=3,
+        shelf_life_days=14,
+        cost_per_unit=22.00,
+        supplier_id="SWISS_DAIRY"
+    ),
+    
+    # Verduras
+    "VEG001": InventoryItem(
+        id="VEG001",
+        name="Fresh Lettuce",
+        category=ItemCategory.PERISHABLE,
+        storage=StorageCondition.REFRIGERATED,
+        unit="head",
+        min_level=30,
+        max_level=100,
+        reorder_point=40,
+        lead_time_days=1,
+        shelf_life_days=5,
+        cost_per_unit=1.20,
+        supplier_id="LOCAL_PRODUCE"
+    ),
+    "VEG002": InventoryItem(
+        id="VEG002",
+        name="Tomatoes",
+        category=ItemCategory.PERISHABLE,
+        storage=StorageCondition.ROOM_TEMP,
+        unit="kg",
+        min_level=10,
+        max_level=30,
+        reorder_point=15,
+        lead_time_days=1,
+        shelf_life_days=5,
+        cost_per_unit=3.50,
+        supplier_id="LOCAL_PRODUCE"
+    ),
+    
+    # Salsas
+    "SAUCE001": InventoryItem(
+        id="SAUCE001",
+        name="Holy Sauce",
+        category=ItemCategory.PERISHABLE,
+        storage=StorageCondition.REFRIGERATED,
+        unit="liter",
+        min_level=5,
+        max_level=20,
+        reorder_point=8,
+        lead_time_days=3,
+        shelf_life_days=14,
+        cost_per_unit=8.00,
+        supplier_id="HOLY_COW_CENTRAL"
+    ),
+    
+    # Papas
+    "FRIES001": InventoryItem(
+        id="FRIES001",
+        name="Premium Fries",
+        category=ItemCategory.FROZEN,
+        storage=StorageCondition.FROZEN,
+        unit="kg",
+        min_level=50,
+        max_level=200,
+        reorder_point=75,
+        lead_time_days=3,
+        shelf_life_days=180,
+        cost_per_unit=3.20,
+        supplier_id="FROZEN_FOODS"
+    ),
+    
+    # Bebidas
+    "BEV001": InventoryItem(
+        id="BEV001",
+        name="Swiss Craft Beer",
+        category=ItemCategory.BEVERAGES,
+        storage=StorageCondition.REFRIGERATED,
+        unit="bottle",
+        min_level=100,
+        max_level=400,
+        reorder_point=150,
+        lead_time_days=4,
+        shelf_life_days=180,
+        cost_per_unit=3.50,
+        supplier_id="LOCAL_BREWERY"
+    ),
+    
+    # Complementos especiales
+    "SPEC001": InventoryItem(
+        id="SPEC001",
+        name="Gruyère AOP",
+        category=ItemCategory.PERISHABLE,
+        storage=StorageCondition.REFRIGERATED,
+        unit="kg",
+        min_level=3,
+        max_level=12,
+        reorder_point=5,
+        lead_time_days=3,
+        shelf_life_days=21,
+        cost_per_unit=28.00,
+        supplier_id="SWISS_DAIRY"
+    ),
+    "SPEC002": InventoryItem(
+        id="SPEC002",
+        name="Swiss Bacon",
+        category=ItemCategory.PERISHABLE,
+        storage=StorageCondition.REFRIGERATED,
+        unit="kg",
+        min_level=5,
+        max_level=20,
+        reorder_point=8,
+        lead_time_days=2,
+        shelf_life_days=7,
+        cost_per_unit=32.00,
+        supplier_id="SWISS_MEAT"
+    ),
+    
+    # Desechables
+    "SUP001": InventoryItem(
+        id="SUP001",
+        name="Eco-Friendly Packaging",
+        category=ItemCategory.SUPPLIES,
+        storage=StorageCondition.ROOM_TEMP,
+        unit="piece",
+        min_level=500,
+        max_level=2000,
+        reorder_point=750,
+        lead_time_days=5,
+        shelf_life_days=None,
+        cost_per_unit=0.45,
+        supplier_id="ECO_SUPPLIES"
+    )
+}

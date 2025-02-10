@@ -1,0 +1,82 @@
+from typing import Dict, List
+
+# Definición de recetas por burger
+BURGER_RECIPES = {
+    "CLASSIC": {
+        "BUN001": 1,      # Classic Bun
+        "BEEF001": 1,     # Swiss Beef Patty
+        "VEG001": 0.1,    # Lettuce
+        "VEG002": 0.08,   # Tomatoes
+        "SAUCE001": 0.03, # Holy Sauce
+        "SUP001": 1,      # Eco Packaging
+    },
+    
+    "CHEESE_LOVER": {
+        "BUN001": 1,      # Classic Bun
+        "BEEF001": 1,     # Swiss Beef Patty
+        "CHEESE001": 0.05,# Raclette
+        "SPEC001": 0.05,  # Gruyère
+        "SAUCE001": 0.03, # Holy Sauce
+        "SUP001": 1,      # Eco Packaging
+    },
+    
+    "VEGGIE": {
+        "BUN001": 1,      # Classic Bun
+        "BEEF002": 1,     # Plant-Based Patty
+        "VEG001": 0.15,   # Extra Lettuce
+        "VEG002": 0.1,    # Tomatoes
+        "TOP001": 0.05,   # Caramelized Onions
+        "SAUCE001": 0.03, # Holy Sauce
+        "SUP001": 1,      # Eco Packaging
+    },
+    
+    "SPICY": {
+        "BUN001": 1,      # Classic Bun
+        "BEEF001": 1,     # Swiss Beef Patty
+        "TOP002": 0.03,   # Jalapeños
+        "CHEESE001": 0.05,# Raclette
+        "SAUCE002": 0.04, # BBQ Sauce
+        "SUP001": 1,      # Eco Packaging
+    }
+}
+
+def calculate_ingredients_needed(orders: Dict[str, int]) -> Dict[str, float]:
+    """
+    Calcula las cantidades totales necesarias de cada ingrediente basado en los pedidos.
+    
+    Args:
+        orders: Diccionario con {nombre_burger: cantidad}
+        
+    Returns:
+        Diccionario con {id_ingrediente: cantidad_total}
+    """
+    total_ingredients = {}
+    
+    for burger, quantity in orders.items():
+        if burger not in BURGER_RECIPES:
+            continue
+            
+        recipe = BURGER_RECIPES[burger]
+        for ingredient, amount in recipe.items():
+            if ingredient not in total_ingredients:
+                total_ingredients[ingredient] = 0
+            total_ingredients[ingredient] += amount * quantity
+    
+    return total_ingredients
+
+def calculate_minimum_stock(average_daily_orders: Dict[str, int], safety_days: int = 3) -> Dict[str, float]:
+    """
+    Calcula el stock mínimo necesario basado en pedidos promedio diarios.
+    
+    Args:
+        average_daily_orders: Diccionario con {nombre_burger: cantidad_promedio_diaria}
+        safety_days: Días de stock de seguridad
+        
+    Returns:
+        Diccionario con {id_ingrediente: cantidad_minima}
+    """
+    daily_ingredients = calculate_ingredients_needed(average_daily_orders)
+    return {
+        ingredient: amount * safety_days 
+        for ingredient, amount in daily_ingredients.items()
+    }
