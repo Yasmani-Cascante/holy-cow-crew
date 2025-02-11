@@ -1,0 +1,27 @@
+data_sources:
+  inventory:
+    catalog: holy_cow_inventory.py
+    current: inventory.csv
+    historical: inventory_data.csv
+  sales:
+    current: sales_history.csv
+    historical: historical_sales.csv
+  support:
+    marketing: marketing_campaigns.csv
+    staff: staff_metrics.csv
+
+analysis_config:
+  use_historical: true
+  min_data_points: 30
+  alerts:
+    inventory:
+      waste_threshold: 5
+      stock_threshold: 0.2
+    efficiency:
+      min_score: 0.7
+
+locations:
+  - Zurich_01
+  - Basel_01
+  - Bern_01
+  - Geneva_01
