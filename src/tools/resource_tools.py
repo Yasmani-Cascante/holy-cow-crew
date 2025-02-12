@@ -1,30 +1,12 @@
-from pydantic import BaseModel, Field
-from typing import Dict, List, Optional
 from langchain.tools import StructuredTool
-
-class StaffRecommendation(BaseModel):
-    shift: str
-    staff_count: int
-    roles: Dict[str, int]
-
-class InventoryOrder(BaseModel):
-    item: str
-    quantity: float
-    priority: str
-
-class ResourceOptimizationInput(BaseModel):
-    predicted_sales: float
-    current_staff: int
-    inventory_levels: Dict[str, float]
-    peak_hours: List[str]
-    day_of_week: str
-
-class OptimizationResult(BaseModel):
-    recommended_staff: List[StaffRecommendation]
-    inventory_orders: List[InventoryOrder]
-    efficiency_score: float
-    cost_savings: float
-    alerts: List[str] = []
+from ..models.resource_models import (
+    StaffRecommendation,
+    InventoryOrder,
+    ResourceOptimizationInput,
+    OptimizationResult,
+    MultiLocationInput
+)
+from typing import Dict, List
 
 class ResourceTools:
     def __init__(self):
@@ -41,6 +23,13 @@ class ResourceTools:
         }
 
     def optimize_resources(self, input_data: ResourceOptimizationInput) -> OptimizationResult:
+        """
+        Optimiza recursos basado en predicciones y estado actual
+        """
+        # Validar entrada usando Pydantic
+        if not isinstance(input_data, ResourceOptimizationInput):
+            input_data = ResourceOptimizationInput(**input_data)
+
         # Calcular personal recomendado
         staff_recs = []
         for shift in ['morning', 'afternoon', 'evening']:

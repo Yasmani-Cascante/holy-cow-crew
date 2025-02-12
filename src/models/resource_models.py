@@ -1,30 +1,53 @@
-from pydantic import BaseModel, Field
-from typing import List, Dict, Optional
-
-class ResourceOptimizationInput(BaseModel):
-    """Datos de entrada para optimización de recursos"""
-    predicted_sales: float = Field(..., description="Ventas predichas")
-    current_staff: int = Field(..., description="Personal actual")
-    inventory_levels: Dict[str, float] = Field(..., description="Niveles actuales de inventario")
-    peak_hours: List[str] = Field(..., description="Horas pico")
-    day_of_week: str = Field(..., description="Día de la semana")
+from pydantic import BaseModel, ConfigDict
+from typing import Dict, List, Optional, Any
+from datetime import datetime
 
 class StaffRecommendation(BaseModel):
-    """Recomendación de personal por turno"""
-    shift: str = Field(..., description="Turno de trabajo")
-    staff_count: int = Field(..., description="Número recomendado de personal")
-    roles: Dict[str, int] = Field(..., description="Distribución por roles")
+    shift: str
+    staff_count: int
+    roles: Dict[str, int]
 
 class InventoryOrder(BaseModel):
-    """Orden de inventario recomendada"""
-    item: str = Field(..., description="Ítem a ordenar")
-    quantity: float = Field(..., description="Cantidad a ordenar")
-    priority: str = Field(..., description="Prioridad de la orden (alta, media, baja)")
+    item: str
+    quantity: float
+    priority: str
+
+class ResourceOptimizationInput(BaseModel):
+    predicted_sales: float = 0.0
+    current_staff: int = 0
+    inventory_levels: Dict[str, float] = {}
+    peak_hours: List[str] = []
+    day_of_week: str = "Monday"
 
 class OptimizationResult(BaseModel):
-    """Resultado de la optimización de recursos"""
-    recommended_staff: List[StaffRecommendation] = Field(..., description="Recomendaciones de personal")
-    inventory_orders: List[InventoryOrder] = Field(..., description="Órdenes de inventario")
-    efficiency_score: float = Field(..., ge=0, le=100, description="Puntuación de eficiencia")
-    cost_savings: float = Field(..., description="Ahorro estimado en costos")
-    alerts: List[str] = Field(default_factory=list, description="Alertas de optimización")
+    recommended_staff: List[StaffRecommendation]
+    inventory_orders: List[InventoryOrder]
+    efficiency_score: float
+    cost_savings: float
+    alerts: List[str] = []
+
+class InventoryPredictionInput(BaseModel):
+    predicted_demand: float
+    confidence_range: tuple[float, float]
+    trend_factor: float
+    seasonality_factor: float
+
+class InventoryItemConfig(BaseModel):
+    id: str
+    name: str
+    category: str
+    storage_type: str
+    unit: str
+    min_level: float
+    max_level: float
+    reorder_point: float
+    lead_time_days: int
+    cost_per_unit: float
+    supplier_id: str
+
+class MultiLocationInput(BaseModel):
+    model_config = ConfigDict(arbitrary_types_allowed=True)
+    
+    locations_inventory: Dict[str, Dict[str, float]]
+    demand_predictions: Dict[str, Dict[str, InventoryPredictionInput]]
+    items: Dict[str, InventoryItemConfig]
