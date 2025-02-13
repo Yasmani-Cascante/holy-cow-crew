@@ -16,6 +16,17 @@ class PredictionTools:
         target_date: datetime,
         location: str
     ) -> Dict[str, InventoryPrediction]:
+        """
+        Predice demanda basada en datos históricos
+        Args:
+            historical_data: DataFrame con historial de ventas
+            items: Diccionario de items con configuración
+            target_date: Fecha objetivo para predicción
+            location: Ubicación para predicción
+        """
+        if historical_data is None or historical_data.empty:
+            raise ValueError("Se requiere historical_data válido")
+            
         predictions = {}
         seasonal_factors = {
             1: 0.9, 2: 0.9, 3: 1.0, 4: 1.0, 5: 1.0, 6: 1.2,
@@ -23,28 +34,35 @@ class PredictionTools:
         }
         
         for item_id, item in items.items():
-            if not historical_data.empty:
-                item_data = historical_data[historical_data['item_id'] == item_id]
-                if not item_data.empty:
-                    mean_sales = item_data['units_sold'].mean()
-                    std_sales = item_data['units_sold'].std() or mean_sales * 0.1
-                else:
-                    mean_sales = 100  # valor por defecto
-                    std_sales = 20
-            else:
-                mean_sales = 100
-                std_sales = 20
+            df = historical_data[historical_data['item_id'] == item_id].copy()
             
+            if df.empty:
+                continue
+                
+            # Calcular métricas base
+            mean_sales = df['units_sold'].mean()
+            std_sales = df['units_sold'].std() or mean_sales * 0.1
+            
+            # Ajustar por estacionalidad
             seasonal_factor = seasonal_factors.get(target_date.month, 1.0)
             predicted_demand = mean_sales * seasonal_factor
             
+            # Calcular tendencia
+            if len(df) >= 2:
+                df['date'] = pd.to_datetime(df['date'])
+                df = df.sort_values('date')
+                sales_change = (df['units_sold'].iloc[-1] - df['units_sold'].iloc[0]) / df['units_sold'].iloc[0]
+                trend_factor = 1 + (sales_change / len(df))
+            else:
+                trend_factor = 1.0
+            
             predictions[item_id] = InventoryPrediction(
-                predicted_demand=round(predicted_demand, 2),
+                predicted_demand=round(predicted_demand * trend_factor, 2),
                 confidence_range=(
                     round(max(0, predicted_demand - 2 * std_sales), 2),
                     round(predicted_demand + 2 * std_sales, 2)
                 ),
-                trend_factor=1.0,
+                trend_factor=round(trend_factor, 4),
                 seasonality_factor=seasonal_factor
             )
         

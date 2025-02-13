@@ -1,12 +1,19 @@
 from langchain.tools import StructuredTool
+from pydantic import BaseModel, Field
+from typing import Dict, List, Any
+from datetime import datetime
 from ..models.resource_models import (
     StaffRecommendation,
     InventoryOrder,
     ResourceOptimizationInput,
-    OptimizationResult,
+    OptimizationResult
+)
+from ..models.inventory_models import (
+    InventoryLevel,
+    InventoryItem,
+    InventoryPrediction,
     MultiLocationInput
 )
-from typing import Dict, List
 
 class ResourceTools:
     def __init__(self):
@@ -22,19 +29,12 @@ class ResourceTools:
             'helper': 22   # CHF por hora
         }
 
-    def optimize_resources(self, input_data: ResourceOptimizationInput) -> OptimizationResult:
-        """
-        Optimiza recursos basado en predicciones y estado actual
-        """
-        # Validar entrada usando Pydantic
-        if not isinstance(input_data, ResourceOptimizationInput):
-            input_data = ResourceOptimizationInput(**input_data)
-
-        # Calcular personal recomendado
+    def optimize_resources(self, data: ResourceOptimizationInput) -> OptimizationResult:
+        """Optimiza recursos basado en predicciones y estado actual"""
         staff_recs = []
         for shift in ['morning', 'afternoon', 'evening']:
-            is_peak = any(hour in input_data.peak_hours for hour in self._get_shift_hours(shift))
-            shift_sales = input_data.predicted_sales * (0.4 if is_peak else 0.3)
+            is_peak = any(hour in data.peak_hours for hour in self._get_shift_hours(shift))
+            shift_sales = data.predicted_sales * (0.4 if is_peak else 0.3)
             
             roles = {}
             for role, ratio in self.STAFF_RATIOS.items():
@@ -50,21 +50,17 @@ class ResourceTools:
                 roles=roles
             ))
 
-        # Calcular órdenes de inventario
         inventory_orders = []
-        for item, level in input_data.inventory_levels.items():
-            if level < 5:  # Umbral bajo
+        for item, level in data.inventory_levels.items():
+            if level < 5:
                 inventory_orders.append(InventoryOrder(
                     item=item,
                     quantity=10 - level,
                     priority='high' if level < 2 else 'medium'
                 ))
 
-        # Calcular eficiencia y ahorro
-        efficiency = self._calculate_efficiency(staff_recs, input_data.current_staff)
-        savings = self._calculate_savings(staff_recs, input_data.current_staff)
-
-        # Generar alertas
+        efficiency = self._calculate_efficiency(staff_recs, data.current_staff)
+        savings = self._calculate_savings(staff_recs, data.current_staff)
         alerts = self._generate_alerts(staff_recs, inventory_orders)
 
         return OptimizationResult(
@@ -74,6 +70,77 @@ class ResourceTools:
             cost_savings=savings,
             alerts=alerts
         )
+
+    def analyze_inventory(
+        self,
+        current_levels: Dict[str, InventoryLevel],
+        items: Dict[str, InventoryItem],
+        historical_movements: List[Dict] = [],
+        predicted_sales: float = 0
+    ) -> Dict[str, Any]:
+        """Analiza niveles de inventario y genera recomendaciones"""
+        results = {
+            'alerts': [],
+            'recommendations': [],
+            'status': {}
+        }
+        
+        for item_id, level in current_levels.items():
+            item_config = items.get(item_id)
+            if not item_config:
+                continue
+                
+            status = {
+                'current_level': level.current_quantity,
+                'available': level.available_quantity,
+                'utilization': (level.current_quantity / item_config.max_level) * 100
+            }
+            
+            if level.current_quantity <= item_config.reorder_point:
+                results['alerts'].append(f"Reorder needed for {item_config.name}")
+                results['recommendations'].append({
+                    'item': item_id,
+                    'action': 'reorder',
+                    'quantity': item_config.max_level - level.current_quantity
+                })
+                
+            results['status'][item_id] = status
+            
+        return results
+
+    def optimize_multi_location_orders(self, data: MultiLocationInput) -> Dict[str, Any]:
+        """Optimiza pedidos y transferencias entre locales"""
+        recommendations = {}
+        
+        for location, inventory in data.locations_inventory.items():
+            location_recs = {
+                'orders': [],
+                'transfers': []
+            }
+            
+            predictions = data.demand_predictions.get(location, {})
+            
+            for item_id, level in inventory.items():
+                item_config = data.items.get(item_id)
+                if not item_config:
+                    continue
+                    
+                prediction = predictions.get(item_id)
+                if not prediction:
+                    continue
+                    
+                # Análisis de necesidad de pedido
+                if level.current_quantity < item_config.reorder_point:
+                    order_quantity = item_config.max_level - level.current_quantity
+                    location_recs['orders'].append({
+                        'item_id': item_id,
+                        'quantity': order_quantity,
+                        'priority': 'high' if level.current_quantity < item_config.min_level else 'medium'
+                    })
+                    
+            recommendations[location] = location_recs
+            
+        return recommendations
 
     def _get_shift_hours(self, shift: str) -> List[str]:
         shifts = {
@@ -89,15 +156,12 @@ class ResourceTools:
         return ratio * 100
 
     def _calculate_savings(self, recommendations: List[StaffRecommendation], current_staff: int) -> float:
-        """Calcula ahorros potenciales basados en optimización de personal"""
         HOURS_PER_SHIFT = 8
         DAYS_PER_MONTH = 30
         
-        # Calcular costo actual
         avg_rate = sum(self.HOURLY_RATES.values()) / len(self.HOURLY_RATES)
         current_daily_cost = current_staff * avg_rate * HOURS_PER_SHIFT
         
-        # Calcular costo optimizado
         optimized_daily_cost = 0
         for rec in recommendations:
             shift_cost = sum(
@@ -106,21 +170,21 @@ class ResourceTools:
             )
             optimized_daily_cost += shift_cost
         
-        # Calcular ahorro mensual
         monthly_savings = (current_daily_cost - optimized_daily_cost) * DAYS_PER_MONTH
-        
         return max(0, monthly_savings)
 
-    def _generate_alerts(self, staff_recs: List[StaffRecommendation], inventory_orders: List[InventoryOrder]) -> List[str]:
+    def _generate_alerts(
+        self,
+        staff_recs: List[StaffRecommendation],
+        inventory_orders: List[InventoryOrder]
+    ) -> List[str]:
         alerts = []
         
-        # Alertas de inventario
         critical_items = [order.item for order in inventory_orders if order.priority == 'high']
         if critical_items:
             alerts.append(f"¡Niveles críticos de inventario en: {', '.join(critical_items)}!")
         
-        # Alertas de personal
-        total_staff = sum(rec.staff_count for rec in staff_recs)
+        total_staff = sum(rec.staff_count for rec in recommendations)
         if total_staff > 30:
             alerts.append("Alta demanda de personal - verificar disponibilidad")
         
@@ -132,6 +196,15 @@ class ResourceTools:
                 func=self.optimize_resources,
                 name="optimize_resources",
                 description="Optimiza recursos basado en predicciones y estado actual",
-                args_schema=ResourceOptimizationInput
+            ),
+            StructuredTool.from_function(
+                func=self.analyze_inventory,
+                name="analyze_inventory",
+                description="Analiza niveles de inventario y genera recomendaciones"
+            ),
+            StructuredTool.from_function(
+                func=self.optimize_multi_location_orders,
+                name="optimize_multi_location_orders",
+                description="Optimiza pedidos y transferencias entre locales"
             )
         ]

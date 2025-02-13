@@ -1,46 +1,55 @@
-from typing import Dict, List
+from typing import Dict, List, Any
 from datetime import datetime
 from langchain.tools import StructuredTool
 from ..models.inventory_models import (
     InventoryItem,
     InventoryLevel,
-    OrderRecommendation
+    InventoryPrediction
 )
 
 class InventoryTools:
-    def analyze_inventory_levels(
-        self,
+    def analyze_inventory(
+        self, 
         current_levels: Dict[str, InventoryLevel],
         items: Dict[str, InventoryItem],
-        historical_movements: List,
-        predicted_sales: float
-    ) -> Dict[str, OrderRecommendation]:
-        recommendations = {}
+        predicted_sales: float,
+        historical_movements: List[Dict] = []
+    ) -> Dict[str, Any]:
+        """Analiza niveles de inventario y genera recomendaciones"""
+        
+        results = {
+            'alerts': [],
+            'recommendations': [],
+            'status': {}
+        }
         
         for item_id, level in current_levels.items():
-            if item_id not in items:
+            item_config = items.get(item_id)
+            if not item_config:
                 continue
                 
-            item = items[item_id]
+            status = {
+                'current_level': level.current_quantity,
+                'available': level.available_quantity,
+                'utilization': (level.current_quantity / item_config.max_level) * 100
+            }
             
-            if level.available_quantity <= item.reorder_point:
-                order_quantity = item.max_level - level.available_quantity
+            if level.current_quantity <= item_config.reorder_point:
+                results['alerts'].append(f"Reorder needed for {item_config.name}")
+                results['recommendations'].append({
+                    'item': item_id,
+                    'action': 'reorder',
+                    'quantity': item_config.max_level - level.current_quantity
+                })
                 
-                recommendations[item_id] = OrderRecommendation(
-                    item_id=item_id,
-                    quantity=order_quantity,
-                    priority="high" if level.available_quantity <= item.min_level else "medium",
-                    reason=f"Stock bajo: {level.available_quantity} unidades disponibles",
-                    estimated_cost=order_quantity * item.cost_per_unit,
-                    suggested_order_date=datetime.now()
-                )
+            results['status'][item_id] = status
         
-        return recommendations
+        return results
 
     def get_tools(self) -> List[StructuredTool]:
         return [
             StructuredTool.from_function(
-                func=self.analyze_inventory_levels,
+                func=self.analyze_inventory,
                 name="analyze_inventory",
                 description="Analiza niveles de inventario y genera recomendaciones"
             )

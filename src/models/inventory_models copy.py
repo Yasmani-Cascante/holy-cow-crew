@@ -1,24 +1,19 @@
 from pydantic import BaseModel, Field
-from typing import Dict, List, Optional, Any
+from typing import Dict, List, Optional, Any, Union
 from datetime import datetime
+
+class ItemCategory(BaseModel):
+    name: str
+    description: str
+
+class StorageCondition(BaseModel):
+    type: str
+    temperature_range: Optional[tuple[float, float]] = None
 
 class BatchInfo(BaseModel):
     batch_id: str
     quantity: float
     expiry_date: Optional[datetime] = None
-
-class InventoryLevel(BaseModel):
-    item_id: str
-    current_quantity: float
-    available_quantity: float
-    reserved_quantity: float = Field(default=0)
-    last_updated: datetime = Field(default_factory=datetime.now)
-    batch_info: Optional[List[BatchInfo]] = None
-
-    class Config:
-        json_encoders = {
-            datetime: lambda v: v.isoformat()
-        }
 
 class InventoryItem(BaseModel):
     id: str
@@ -36,6 +31,14 @@ class InventoryItem(BaseModel):
     last_order_date: Optional[datetime] = None
     average_daily_usage: Optional[float] = None
 
+class InventoryLevel(BaseModel):
+    item_id: str
+    current_quantity: float
+    reserved_quantity: float = 0
+    available_quantity: float
+    last_updated: datetime
+    batch_info: Optional[List[BatchInfo]] = None
+
 class OrderRecommendation(BaseModel):
     item_id: str
     quantity: float
@@ -51,18 +54,13 @@ class TransferOption(BaseModel):
     total_cost: float
     available_immediately: bool
 
-class InventoryPrediction(BaseModel):
-    predicted_demand: float
-    confidence_range: tuple[float, float]
-    trend_factor: float
-    seasonality_factor: float
-
 class LocationRecommendation(BaseModel):
     new_orders: Dict[str, OrderRecommendation]
     transfers_in: Dict[str, TransferOption]
     transfers_out: Dict[str, TransferOption]
 
-class MultiLocationInput(BaseModel):
-    locations_inventory: Dict[str, Dict[str, InventoryLevel]]
-    demand_predictions: Dict[str, Dict[str, InventoryPrediction]]
-    items: Dict[str, InventoryItem]
+class InventoryPrediction(BaseModel):
+    predicted_demand: float
+    confidence_range: tuple[float, float]
+    trend_factor: float
+    seasonality_factor: float

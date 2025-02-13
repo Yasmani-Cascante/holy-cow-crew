@@ -1,5 +1,5 @@
-from pydantic import BaseModel, ConfigDict
-from typing import Dict, List, Optional, Any
+from pydantic import BaseModel, Field
+from typing import Dict, List, Optional
 from datetime import datetime
 
 class StaffRecommendation(BaseModel):
@@ -13,11 +13,11 @@ class InventoryOrder(BaseModel):
     priority: str
 
 class ResourceOptimizationInput(BaseModel):
-    predicted_sales: float = 0.0
-    current_staff: int = 0
-    inventory_levels: Dict[str, float] = {}
-    peak_hours: List[str] = []
-    day_of_week: str = "Monday"
+    predicted_sales: float = Field(..., description="Predicted sales value")
+    current_staff: int = Field(..., description="Current staff count")
+    inventory_levels: Dict[str, float] = Field(..., description="Current inventory levels")
+    peak_hours: List[str] = Field(default_factory=list, description="Peak hours list")
+    day_of_week: str = Field(..., description="Current day of week")
 
 class OptimizationResult(BaseModel):
     recommended_staff: List[StaffRecommendation]
@@ -25,29 +25,3 @@ class OptimizationResult(BaseModel):
     efficiency_score: float
     cost_savings: float
     alerts: List[str] = []
-
-class InventoryPredictionInput(BaseModel):
-    predicted_demand: float
-    confidence_range: tuple[float, float]
-    trend_factor: float
-    seasonality_factor: float
-
-class InventoryItemConfig(BaseModel):
-    id: str
-    name: str
-    category: str
-    storage_type: str
-    unit: str
-    min_level: float
-    max_level: float
-    reorder_point: float
-    lead_time_days: int
-    cost_per_unit: float
-    supplier_id: str
-
-class MultiLocationInput(BaseModel):
-    model_config = ConfigDict(arbitrary_types_allowed=True)
-    
-    locations_inventory: Dict[str, Dict[str, float]]
-    demand_predictions: Dict[str, Dict[str, InventoryPredictionInput]]
-    items: Dict[str, InventoryItemConfig]

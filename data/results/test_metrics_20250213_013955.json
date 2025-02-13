@@ -1,0 +1,26 @@
+{
+  "execution_time": {
+    "Zurich": {
+      "start": "2025-02-13T01:35:08.319812",
+      "end": "2025-02-13T01:36:19.001097",
+      "duration": 70.681285
+    },
+    "Geneva": {
+      "start": "2025-02-13T01:36:19.003097",
+      "end": "2025-02-13T01:37:36.652252",
+      "duration": 77.649155
+    },
+    "Basel": {
+      "start": "2025-02-13T01:37:36.653252",
+      "end": "2025-02-13T01:39:55.549248",
+      "duration": 138.895996
+    }
+  },
+  "memory_usage": {},
+  "agent_performance": {},
+  "recommendations_quality": {},
+  "errors": [],
+  "total_duration": 287.230437,
+  "total_locations": 3,
+  "total_errors": 0
+}
